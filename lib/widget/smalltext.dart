@@ -15,7 +15,7 @@ class SmallText extends StatelessWidget {
       {Key? key,
       required this.text,
       this.color,
-      this.size =18,
+      this.size =16,
       this.height,
       this.fontStyle,
       this.fontWeight,

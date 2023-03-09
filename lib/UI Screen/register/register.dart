@@ -1,29 +1,29 @@
-import 'package:askun/UI%20Screen/register/register.dart';
+import 'package:askun/UI%20Screen/login%20page/login.dart';
+import 'package:askun/UI%20Screen/login%20page/otpscreen.dart';
 import 'package:askun/utilites/constant.dart';
 import 'package:askun/utilites/strings.dart';
 import 'package:askun/widget/smalltext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
-import 'otpscreen.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RigisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RigisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SmallText(text:'Don\'t have an Account?',size: 16,color: blueGrey,),
+            SmallText(text:'Already have an Account?',size: 16,color: blueGrey,),
             SizedBox(width: 5,),
             InkWell(
                 onTap: (){
@@ -31,9 +31,9 @@ class _LoginPageState extends State<LoginPage> {
                       context,
                       PageTransition(
                           type: PageTransitionType.rightToLeft,
-                          child:  RegisterPage()));
+                          child:  LoginPage()));
                 },
-                child: SmallText(text:'Register',fontWeight: FontWeight.w500,)),
+                child: SmallText(text:'Login',fontWeight: FontWeight.w500,)),
           ],
         ),
       ),
@@ -48,50 +48,42 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      height: MediaQuery.of(context).size.height/2.5,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Center(
-                            child: Image.asset(
-                              'assets/logo.png',
-                              height: 150,
-                              width: 150,
-                            ),
-                          ),
-                          // heightSpace,
-                          Center(
-                            child: SmallText(
-                              text: MyStrings.login,
-                              size: 24,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          // heightSpace,
-                          // heightSpace,
-                          // heightSpace,
-                          // heightSpace,
-                          // heightSpace,
-                          RichText(
-                            textAlign: TextAlign.center,
-                            text: TextSpan(
-                              text: MyStrings.loginMessage,
+                    Center(
+                      child: Image.asset(
+                        'assets/logo.png',
+                        height: 150,
+                        width: 150,
+                      ),
+                    ),
+                    // heightSpace,
+                    Center(
+                      child: SmallText(
+                        text: MyStrings.register,
+                        size: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    // heightSpace,
+                    // heightSpace,
+                    // heightSpace,
+                    // heightSpace,
+                    // heightSpace,
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        text: MyStrings.loginMessage,
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: blueGrey,
+                        ),
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: MyStrings.oTP,
                               style: TextStyle(
-                                fontSize: 15,
-                                color: blueGrey,
-                              ),
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: MyStrings.oTP,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 17,
-                                        color: primaryColor)),
-                                TextSpan(text: MyStrings.mobile),
-                              ],
-                            ),
-                          ),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17,
+                                  color: primaryColor)),
+                          TextSpan(text: MyStrings.mobile),
                         ],
                       ),
                     ),
@@ -100,11 +92,41 @@ class _LoginPageState extends State<LoginPage> {
                     // heightSpace,
                     // heightSpace,
                     Container(
-                      height: MediaQuery.of(context).size.height/5,
+                      height: MediaQuery.of(context).size.height/4.8,
+
                       child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          SmallText(text: MyStrings.username),
+                          heightSpace,
+                          TextField(
+                            cursorColor: primaryColor,
+                            // controller: controller,
+                            decoration: InputDecoration(
+                              filled: true,
+                              hoverColor: primaryColor,
+                              focusColor: primaryColor,
+                              isDense: true,
+                              counterText: "",
+                              contentPadding: EdgeInsets.fromLTRB(10, 12, 10, 12),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                                borderSide: BorderSide(width: 1, color: blueGrey),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                                borderSide: BorderSide(width: 1, color: blueGrey),
+                              ),
+                              suffixIcon: Icon(
+                                Icons.person,
+                                size: 25,
+                                color: primaryColor,
+                              ),
+                            ),
+                          ),
+                          heightSpace,
+                          heightSpace,
                           SmallText(text: MyStrings.mobileNumber),
-                           heightSpace,
+                          heightSpace,
                           TextField(
                             cursorColor: primaryColor,
                             // controller: controller,
@@ -151,37 +173,35 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                           ),
-                          heightSpace,
-                          heightSpace,
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: InkWell(
-                              onTap: (){
-                                Navigator.push(
-                                    context,
-                                    PageTransition(
-                                        type: PageTransitionType.rightToLeft,
-                                        child: const OTPScreen()));
-                              },
-                              child: Container(
-                                width: MediaQuery.of(context).size.width / 3,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  color: primaryColor,
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: Center(
-                                  child: SmallText(
-                                    text: MyStrings.sendOTP,
-                                    color: whiteColor,
-                                    fontWeight: FontWeight.w500,
-                                    size: 16,
-                                  ),
-                                ),
-                              ),
+                        ],
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: InkWell(
+                        onTap: (){
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: const OTPScreen()));
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width / 3,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: primaryColor,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Center(
+                            child: SmallText(
+                              text: MyStrings.register,
+                              color: whiteColor,
+                              fontWeight: FontWeight.w500,
+                              size: 16,
                             ),
                           ),
-                        ],
+                        ),
                       ),
                     ),
                     // heightSpace,

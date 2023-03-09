@@ -1,8 +1,10 @@
+import 'package:askun/UI%20Screen/homepage/homepage.dart';
 import 'package:askun/utilites/constant.dart';
 import 'package:askun/utilites/strings.dart';
 import 'package:askun/widget/smalltext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OTPScreen extends StatefulWidget {
@@ -81,7 +83,7 @@ class _OTPScreenState extends State<OTPScreen> {
                 child: Padding(
                     padding:
                         const EdgeInsets.symmetric(vertical: 8.0, horizontal: 30),
-                    child: PinCodeTextField(
+                    child: PinCodeTextField (
                       appContext: context,
                       inputFormatters: [
                         WhitelistingTextInputFormatter.digitsOnly
@@ -156,11 +158,11 @@ class _OTPScreenState extends State<OTPScreen> {
                 alignment: Alignment.centerRight,
                 child: InkWell(
                   onTap: () {
-                    // Navigator.push(
-                    //     context,
-                    //     PageTransition(
-                    //         type: PageTransitionType.rightToLeft,
-                    //         child: const OTPScreen()));
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: const HomeScreen()));
                   },
                   child: Container(
                     width: MediaQuery.of(context).size.width / 3,
