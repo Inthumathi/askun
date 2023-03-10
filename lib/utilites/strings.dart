@@ -1,7 +1,7 @@
 class MyStrings{
   static const img1 = "assets/home/img1.png";
   static const img2 = "assets/home/img2.png";
-  static const img3 = "assets/home/meat.jpg";
+  static const img3 = "assets/home/sampleimg1.png";
 
   // Login Screen
   static const String login = 'Login';
