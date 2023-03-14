@@ -86,7 +86,7 @@ class _OTPScreenState extends State<OTPScreen> {
                     child: PinCodeTextField (
                       appContext: context,
                       inputFormatters: [
-                        WhitelistingTextInputFormatter.digitsOnly
+                        // WhitelistingTextInputFormatter.digitsOnly
                       ],
                       cursorHeight: 20,
                       // pastedTextStyle: TextStyle(
@@ -116,7 +116,7 @@ class _OTPScreenState extends State<OTPScreen> {
                         // errorBorderColor:  Color(0xffC4C5C4),
                         selectedColor: Color(0xffd8d8d8),
                         inactiveColor: Color(0xffC4C5C4),
-                        //borderWidth: 1,
+                        borderWidth: 1,
                         activeColor: Color(0xffffdecd),
                         disabledColor: whiteColor,
                         selectedFillColor: Color(0xffffd8c5),

@@ -22,4 +22,5 @@ class MyStrings{
   // Homepage
   static const String category = 'Categories';
   static const String seeAll = 'See All';
+  static const String selectLanguage = 'Select Language';
 }

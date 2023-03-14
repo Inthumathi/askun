@@ -4,9 +4,9 @@ import 'package:askun/utilites/strings.dart';
 import 'package:askun/widget/smalltext.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
-
-
+// Banner Image
 final List<String> imgList = [
   'assets/home/img1.png',
   'assets/home/img2.png',
@@ -16,6 +16,15 @@ final List<String> imgList = [
   'assets/home/img6.png',
 ];
 
+// Language
+class Language {
+  Locale locale;
+  String langName;
+
+  Language({required this.locale, required this.langName});
+}
+
+// Banner fetch image
 
 final List<Widget> imageSliders = imgList
     .map((item) => Container(
@@ -28,24 +37,19 @@ final List<Widget> imageSliders = imgList
         ))
     .toList();
 
+// Categories
 class Category {
   final String tittle;
   final String img;
 
-  Category({
+  Category({required this.tittle, required this.img});
+}
 
-    required this.tittle,
-    required this.img
-  });
-}class Cat {
+class Cat {
   final String tittle;
   final String img;
 
-  Cat({
-
-    required this.tittle,
-    required this.img
-  });
+  Cat({required this.tittle, required this.img});
 }
 
 class HomeScreen extends StatefulWidget {
@@ -56,108 +60,120 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   List<Category> CategoryList = <Category>[
     Category(
-
       tittle: 'Fruits & Vegetable',
       img: MyStrings.img1,
     ),
     Category(
-
       tittle: 'Atta, Rice, Oil & Dals',
       img: MyStrings.img2,
     ),
-
   ];
+
+
+
   List<Cat> CatList = <Cat>[
     Cat(
-
       tittle: 'Masala & Dry Fruits',
       img: MyStrings.img3,
     ),
     Cat(
-
       tittle: 'Sweeet Craving',
       img: MyStrings.img3,
     ),
     Cat(
       tittle: 'Frozen Food & Ice Cream',
       img: MyStrings.img3,
-    ), Cat(
-
+    ),
+    Cat(
       tittle: 'Packaged Food',
       img: MyStrings.img3,
-    ), Cat(
-
+    ),
+    Cat(
       tittle: 'Dairy, Bread & Eggs',
       img: MyStrings.img3,
-    ), Cat(
-
+    ),
+    Cat(
       tittle: 'Atta, Rice, Oil & Dals',
       img: MyStrings.img3,
-    ), Cat(
-
+    ),
+    Cat(
       tittle: 'Cold Drinks & Juices',
       img: MyStrings.img3,
-    ), Cat(
-
+    ),
+    Cat(
       tittle: 'Munchies',
       img: MyStrings.img3,
-    ), Cat(
-
+    ),
+    Cat(
       tittle: 'Meat, Fish & Eggs',
       img: MyStrings.img3,
-    ), Cat(
-
+    ),
+    Cat(
       tittle: 'Breakfast & Sauces',
       img: MyStrings.img3,
-    ), Cat(
-
+    ),
+    Cat(
       tittle: 'Tea, Coffee & More',
       img: MyStrings.img3,
-    ), Cat(
-
+    ),
+    Cat(
       tittle: 'Atta, Rice, Oil & Dals',
       img: MyStrings.img3,
-    ), Cat(
-
+    ),
+    Cat(
       tittle: 'Buscuits',
       img: MyStrings.img3,
-    ), Cat(
-
+    ),
+    Cat(
       tittle: 'Makeup & Beauty',
       img: MyStrings.img3,
-    ), Cat(
-
+    ),
+    Cat(
       tittle: 'Bath & Body',
       img: MyStrings.img3,
-    ), Cat(
-
+    ),
+    Cat(
       tittle: 'Cleaning & Essentials',
       img: MyStrings.img3,
-    ), Cat(
-
+    ),
+    Cat(
       tittle: 'Home Needs',
       img: MyStrings.img3,
-    ), Cat(
-
+    ),
+    Cat(
       tittle: 'Electricals & accessories',
       img: MyStrings.img3,
-    ), Cat(
-
+    ),
+    Cat(
       tittle: 'Hygiens & grooming',
       img: MyStrings.img3,
-    ), Cat(
-
+    ),
+    Cat(
       tittle: 'Health & Babycare',
       img: MyStrings.img3,
     ),
+  ];
+
+
+  List<Language> languageList = [
+    Language(langName: 'తెలుగు', locale: const Locale('te', 'TE')),
+    Language(langName: 'हिंदी', locale: const Locale('hi', 'HI')),
+    Language(langName: 'English', locale: const Locale('en', 'US')),
 
   ];
 
+
   int _current = 0;
   final CarouselController _controller = CarouselController();
+  late String selectedLanguage;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedLanguage = getFlag('DE');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -195,24 +211,60 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 10,bottom: 10),
+          padding: const EdgeInsets.only(top: 10, bottom: 10,),
           child: Column(
             children: [
-              // CarouselSlider(
-              //   items: imageSliders,
-              //   carouselController: _controller,
-              //   options: CarouselOptions(
-              //       autoPlay: true,
-              //       disableCenter: false,
-              //       initialPage: 0,
-              //       enlargeCenterPage: false,
-              //       aspectRatio: 2.0,
-              //       onPageChanged: (index, reason) {
-              //         setState(() {
-              //           _current = index;
-              //         });
-              //       }),
-              // ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0,right: 10),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(),
+                    color: containerLightColor
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SmallText(text:'selectLanguage'.tr(),size: 16,fontWeight: FontWeight.w500,color: primaryColor,),
+                        Row(
+                          children: languageList.map((Language language) {
+                            return Expanded(
+                              child: RadioListTile<Locale>(
+                                activeColor: primaryColor,
+                                title: SmallText(text: language.langName,size: 16,fontWeight: FontWeight.bold,),
+                                value: language.locale,
+                                groupValue: Localizations.localeOf(context),
+                                onChanged: (Locale? value) {
+                                  setState(() {
+                                    context.setLocale(value!);
+                                  });
+                                },
+                                contentPadding: EdgeInsets.zero,
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              CarouselSlider(
+                items: imageSliders,
+                carouselController: _controller,
+                options: CarouselOptions(
+                    autoPlay: true,
+                    disableCenter: false,
+                    initialPage: 0,
+                    enlargeCenterPage: false,
+                    aspectRatio: 2.0,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        _current = index;
+                      });
+                    }),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: imgList.asMap().entries.map((entry) {
@@ -221,10 +273,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Container(
                       width: 12.0,
                       height: 12.0,
-                      margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                      margin:
+                          EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: (Theme.of(context).brightness == Brightness.dark
+                          color: (Theme.of(context).brightness ==
+                                      Brightness.dark
                                   ? Colors.white
                                   : primaryColor)
                               .withOpacity(_current == entry.key ? 0.9 : 0.4)),
@@ -235,23 +289,35 @@ class _HomeScreenState extends State<HomeScreen> {
               heightSpace,
               heightSpace,
               Padding(
-                padding: const EdgeInsets.fromLTRB(12,0,12,0),
+                padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
                 child: Column(
                   children: [
-                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SmallText(text: MyStrings.category,fontWeight: FontWeight.w500,),
+                        SmallText(
+                          text:'dailyneeds'.tr(),
+                          fontWeight: FontWeight.w500,
+                        ),
                         Row(
                           children: [
-                            SmallText(text: MyStrings.seeAll,size: 14 ,color: primaryColor,),
-                            SizedBox(width: 5,),
+                            SmallText(
+                              text:'seeAll'.tr(),
+                              size: 14,
+                              color: primaryColor,
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
                             Container(
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color:circleColor,
+                                  color: circleColor,
                                 ),
-
-                                child: Icon(Icons.keyboard_arrow_right,color: primaryColor,)),
+                                child: Icon(
+                                  Icons.keyboard_arrow_right,
+                                  color: primaryColor,
+                                )),
                           ],
                         )
                       ],
@@ -271,25 +337,30 @@ class _HomeScreenState extends State<HomeScreen> {
                         shrinkWrap: true,
                         itemBuilder: (BuildContext ctx, index) {
                           return GestureDetector(
-                            onTap: () {
-                            },
+                            onTap: () {},
                             child: Container(
                                 decoration: BoxDecoration(
                                   color: containerColor,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                child:Padding(
+                                child: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      SmallText( text: CategoryList[index].tittle,color: primaryColor,fontWeight: FontWeight.bold,size: 14,textAlign: TextAlign.center,),
+                                      SmallText(
+                                        text: CategoryList[index].tittle,
+                                        color: primaryColor,
+                                        fontWeight: FontWeight.bold,
+                                        size: 14,
+                                        textAlign: TextAlign.center,
+                                      ),
                                       Image.asset(
                                         CategoryList[index].img,
                                       ),
                                     ],
                                   ),
-                                )
-                            ),
+                                )),
                           );
                         }),
                     heightSpace,
@@ -308,36 +379,45 @@ class _HomeScreenState extends State<HomeScreen> {
                         shrinkWrap: true,
                         itemBuilder: (BuildContext ctx, index) {
                           return GestureDetector(
-                            onTap: () {
-                            },
+                            onTap: () {},
                             child: Container(
                                 decoration: BoxDecoration(
                                   color: containerColor,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                child:Padding(
+                                child: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      SmallText( text: CatList[index].tittle,color: primaryColor,size: 13,fontWeight: FontWeight.w500,textAlign: TextAlign.center,),
+                                      SmallText(
+                                        text: CatList[index].tittle,
+                                        color: primaryColor,
+                                        size: 13,
+                                        fontWeight: FontWeight.w500,
+                                        textAlign: TextAlign.center,
+                                      ),
                                       heightSpace,
                                       Image.asset(
                                         CatList[index].img,
-                                       ),
+                                      ),
                                     ],
                                   ),
-                                )
-                            ),
+                                )),
                           );
                         }),
                   ],
                 ),
               ),
-
             ],
           ),
         ),
       ),
     );
+  }
+
+  String getFlag(String countryCode) {
+    return countryCode.toUpperCase().replaceAllMapped(RegExp(r'[A-Z]'),
+            (match) => String.fromCharCode(match.group(0)!.codeUnitAt(0) + 127397));
   }
 }
